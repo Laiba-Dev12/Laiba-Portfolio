@@ -3,16 +3,20 @@ import cors from "cors";
 import dotenv from "dotenv";
 import Groq from "groq-sdk";
 
-
 dotenv.config();
-
 
 const app = express();
 
 
+// CORS Setup
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://laiba-dev.netlify.app"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
   })
 );
 
@@ -20,23 +24,18 @@ app.use(
 app.use(express.json());
 
 
-
+// Groq Setup
 const groq = new Groq({
-
   apiKey: process.env.GROQ_API_KEY,
-
 });
 
 
 
-
-
-app.get("/", (req,res)=>{
+// Test Route
+app.get("/", (req, res) => {
 
   res.json({
-
-    message:"Portfolio AI Server Running 🚀"
-
+    message: "Portfolio AI Server Running 🚀"
   });
 
 });
@@ -44,26 +43,20 @@ app.get("/", (req,res)=>{
 
 
 
+// AI Chat Route
+app.post("/api/chat", async (req, res) => {
+
+  try {
+
+    const { message } = req.body;
 
 
-
-app.post("/api/chat", async(req,res)=>{
-
-
-  try{
-
-
-    const {message}=req.body;
-
-
-
-    if(!message){
+    if (!message) {
 
       return res.status(400).json({
 
-        success:false,
-
-        message:"Message required"
+        success: false,
+        message: "Message required"
 
       });
 
@@ -71,50 +64,37 @@ app.post("/api/chat", async(req,res)=>{
 
 
 
-
-
     const completion = await groq.chat.completions.create({
 
+      model: "llama-3.3-70b-versatile",
+
+      temperature: 0.5,
 
 
-      model:"llama-3.3-70b-versatile",
-
-
-
-      temperature:0.5,
-
-
-
-      messages:[
-
-
+      messages: [
 
         {
 
-          role:"system",
+          role: "system",
 
-          content:`
+          content: `
 
 You are Laiba Shehzadi's official Portfolio AI Assistant.
 
-Your main purpose is to answer questions about Laiba and her portfolio.
+Your purpose is to answer questions about Laiba, her skills, projects, and portfolio.
 
 Information about Laiba:
 
 Name:
 Laiba Shehzadi
 
-
 Education:
 BS Information Technology Student.
-
 
 Profession:
 MERN Stack Developer.
 
-
 Skills:
-
 - React.js
 - JavaScript
 - Tailwind CSS
@@ -152,10 +132,8 @@ Documentation Skills:
 - Thesis Setup
 - PowerPoint Presentations
 
-Contact Information:
 
-Professional Email:
-buttstudy12@gmail.com
+Professional Links:
 
 GitHub:
 https://github.com/Laiba-Dev12
@@ -166,56 +144,42 @@ https://www.linkedin.com/in/laiba-iftikhar-a70b5a414
 
 Rules:
 
-If someone asks for contact details, provide these professional contacts.
-
-Do not provide private personal information such as phone number or address.
-
-Rules:
-
-1. If user asks about Laiba, answer professionally using this information.
-
-2. If user asks programming questions, you may help briefly.
-
-3. If question is completely unrelated to Laiba or technology, politely say:
+1. Answer questions about Laiba professionally.
+2. Help with programming questions briefly.
+3. If unrelated questions are asked, say:
 "I am Laiba's portfolio assistant. I can help you with information about Laiba, her projects, skills, and development work."
 
-4. Never invent fake information about Laiba.
-
-5. Reply in English, Urdu, or Roman Urdu depending on user's language.
+4. Never create fake information.
+5. Reply in English, Urdu, or Roman Urdu according to user's language.
 
 `
 
         },
 
 
-
         {
 
-          role:"user",
+          role: "user",
 
-          content:message
+          content: message
 
         }
 
 
       ]
 
-
-
     });
 
 
 
-
     const reply =
-    completion.choices[0].message.content;
-
+      completion.choices[0].message.content;
 
 
 
     res.json({
 
-      success:true,
+      success: true,
 
       reply
 
@@ -223,32 +187,22 @@ Rules:
 
 
 
-  }
-
-
-
-  catch(error){
-
+  } catch (error) {
 
 
     console.log("GROQ ERROR:");
-
     console.log(error);
-
 
 
     res.status(500).json({
 
-      success:false,
-
-      message:"AI response failed"
+      success: false,
+      message: "AI response failed"
 
     });
 
 
-
   }
-
 
 
 });
@@ -256,20 +210,14 @@ Rules:
 
 
 
+// Railway Port
+const PORT = process.env.PORT || 5000;
 
 
+app.listen(PORT, () => {
 
-const PORT =
-process.env.PORT || 5000;
-
-
-
-app.listen(PORT,()=>{
-
-
-console.log(
-`Server running on port ${PORT}`
-);
-
+  console.log(
+    `Server running on port ${PORT}`
+  );
 
 });
