@@ -1,4 +1,5 @@
 # 🚀 Laiba Portfolio
+![Portfolio Screenshot](portfolio.png)
 
 AI Powered Personal Portfolio Website built with React, Node.js, Express and Groq AI.
 
