@@ -243,9 +243,9 @@ onClick={()=>setOpen(true)}
 
 className="
 fixed
-bottom-6
-right-6
-z-50
+bottom-5
+right-5
+z-[9999]
 h-16
 w-16
 rounded-full
@@ -296,12 +296,14 @@ y:0
 
 className="
 fixed
-bottom-6
-right-6
-z-50
+bottom-5
+right-4
+z-[9999]
 flex
-h-[520px]
-w-[370px]
+h-[80vh]
+w-[94vw]
+sm:h-[520px]
+sm:w-[370px]
 flex-col
 overflow-hidden
 rounded-3xl
@@ -416,8 +418,7 @@ className={`
 whitespace-pre-line
 rounded-2xl
 p-3
-text-sm
-
+text-[15px] sm:text-sm
 
 ${
 
@@ -425,11 +426,11 @@ msg.role==="user"
 
 ?
 
-"ml-8 bg-blue-600"
+"ml-auto max-w-[80%] bg-blue-600"
 
 :
 
-"mr-8 bg-slate-800"
+"mr-auto max-w-[80%] bg-slate-800"
 
 }
 

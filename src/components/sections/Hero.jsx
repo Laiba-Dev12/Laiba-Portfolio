@@ -14,8 +14,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden bg-slate-950"
-    >
+      className="relative min-h-screen bg-slate-950"    >
       {/* Animated Background */}
 
       <div className="absolute inset-0 overflow-hidden">

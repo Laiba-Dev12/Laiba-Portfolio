@@ -1,11 +1,17 @@
 @import "tailwindcss";
 
-/* Smooth Scrolling */
+/* =========================
+   Smooth Scrolling
+========================= */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Body */
+/* =========================
+   Body
+========================= */
+
 body {
   margin: 0;
   padding: 0;
@@ -15,13 +21,35 @@ body {
   overflow-x: hidden;
 }
 
-/* Selection */
-::selection {
-  background: #06b6d4;
-  color: white;
+/* Root Height */
+
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
-/* Scrollbar */
+/* =========================
+   Global
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================
+   Text Selection
+========================= */
+
+::selection {
+  background: #22d3ee;
+  color: #020617;
+}
+
+/* =========================
+   Scrollbar
+========================= */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -39,57 +67,40 @@ body {
   background: #06b6d4;
 }
 
-/* Images */
+/* =========================
+   Images
+========================= */
+
 img {
   user-select: none;
   -webkit-user-drag: none;
+  user-drag: none;
 }
 
-/* Links */
+/* =========================
+   Links
+========================= */
+
 a {
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-/* Buttons */
+/* =========================
+   Buttons
+========================= */
+
 button {
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* Focus */
+/* =========================
+   Inputs
+========================= */
+
 input,
 textarea,
 button {
   outline: none;
-}
-/* Smooth Text Rendering */
-* {
-  box-sizing: border-box;
-}
-
-
-/* Root Height */
-html,
-body,
-#root {
-  min-height: 100%;
-}
-
-
-/* Better Selection */
-::selection {
-  background: #22d3ee;
-  color: #020617;
-}
-
-
-/* Disable Image Drag */
-img {
-  user-drag: none;
-}
-
-
-/* Smooth Transition */
-a,
-button {
-  transition: all 0.3s ease;
 }
