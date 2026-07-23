@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body */
+body {
+  margin: 0;
+  padding: 0;
+  background: #020617;
+  color: white;
+  font-family: Inter, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background: #06b6d4;
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0891b2;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* Images */
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+}
+
+/* Focus */
+input,
+textarea,
+button {
+  outline: none;
+}
+/* Smooth Text Rendering */
+* {
+  box-sizing: border-box;
+}
+
+
+/* Root Height */
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+
+/* Better Selection */
+::selection {
+  background: #22d3ee;
+  color: #020617;
+}
+
+
+/* Disable Image Drag */
+img {
+  user-drag: none;
+}
+
+
+/* Smooth Transition */
+a,
+button {
+  transition: all 0.3s ease;
+}
